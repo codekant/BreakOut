@@ -20,21 +20,6 @@ class Util {
             throw e;
         }
     }
-
-    ensureDB(userId) {
-        let pack = this.client.db.get(userId);
-        if(!pack) {
-            this.client.db.set(userId, {
-                inventory: {},
-                vehicles: {},
-                guns: {},
-                hp: 100,
-                energy: 200,
-                money: 0,
-                role: null
-            })
-        }
-    }
 }
 
 module.exports = Util;
