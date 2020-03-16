@@ -1,0 +1,41 @@
+{
+  "name": "breakout",
+  "version": "1.0.0",
+  "description": "A Action, Survival and Adventure bot made for user satisfaction.",
+  "main": "shard.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node shard.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://example.com/web/?path=breakoutbot"
+  },
+  "keywords": [
+    "discord.js",
+    "discord",
+    "bot",
+    "jail",
+    "prison",
+    "police",
+    "cops",
+    "theft",
+    "thieves",
+    "adventure",
+    "js",
+    "explore",
+    "action"
+  ],
+  "author": "Srrrrkant",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^6.0.1",
+    "discord.js": "^12.0.2",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "enmap": "^5.2.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "moment": "^2.24.0"
+  }
+}
