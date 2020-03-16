@@ -9,8 +9,8 @@ const bodyParser = require('body-parser');
 const Data = require("form-data");
 const app = express();
 const Util = require('./Util/GeneralUtil');
+const Eco = require("./Util/EcoUtil");
 
-require('./express/app');
 require("dotenv").config();
 Discord.RichEmbed = Discord.MessageEmbed;
 const client = new Discord.Client();
@@ -21,7 +21,30 @@ client.aliases = new Map();
 client.msgCount = 0;
 client.config = require("./settings/config");
 client.Util = new Util(client);
+client.bo = new Eco(client);
 
 require("./handlers/commands.js")(fs, client);
 require("./handlers/events.js")(fs, client);
 require("./Enmap/user")(Enmap, client);
+
+const http = require("http");
+const server = http.createServer(app);
+
+server.listen(3000, function() {
+    console.log("Listening on PORT 3000");
+});
+
+app.set('view engine', 'ejs');
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'EshiNguyen',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: new Date(25340230000000)
+      }
+}));
+app.use(express.static("styles"))
+app.use("/", require("./routes/index"));
+
