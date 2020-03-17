@@ -6,22 +6,7 @@ class Eco {
   } 
   
   ensure(userId) {
-       this.client.db.ensure(userId, {
-        vehicles: {},
-        guns: {},
-        equiped: {
-          vehicle: {},
-          guns: {},
-          rest: {}
-        },
-        eco: {
-          money: 0,
-          bounty: 0,
-          nitro: 50
-        },
-        role: null,
-        location: null
-    });
+       this.client.db.ensure(userId, this.getItems());
   }
 
   addMoney(userId, amt) {
@@ -109,6 +94,41 @@ class Eco {
     ];
     let item = items[(Math.floor(Math.random() * items.length))];
     return item;
+  }
+  
+  getRole(userId) {
+    let role = this.client.db.get(userId, "role")
+  }
+  
+  getItems(opt) {
+    let guns = this.client.guns.fetchEverything().filter(i => i.cost == 0);
+    let vehicles = this.client.vehicles.fetchEverything().filter(o => o.cost == 0);
+    let obj = {
+      vehicles: {},
+        guns: {},
+        equiped: {
+          vehicle: {},
+          guns: {},
+          rest: {}
+        },
+        eco: {
+          money: 0,
+          bounty: 0,
+          nitro: 50
+        },
+        role: null,
+        location: null
+    };
+    guns.forEach(gun => {
+      obj.guns[gun.id] = gun;
+    });
+    vehicles.forEach(vehicle => {
+      obj.vehicles[vehicle.id] = vehicle;
+    });
+    if(opt) {
+      obj.equiped.guns["pistol"] = this.client.guns.get("pistol");
+    }
+    return obj;
   }
 }
 

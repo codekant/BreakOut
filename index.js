@@ -22,10 +22,12 @@ client.msgCount = 0;
 client.config = require("./settings/config");
 client.Util = new Util(client);
 client.bo = new Eco(client);
+client.emotes = require("./Emojis/emojis.json");
 
 require("./handlers/commands.js")(fs, client);
 require("./handlers/events.js")(fs, client);
 require("./Enmap/user")(Enmap, client);
+require("./Enmap/ItemSet")(Enmap, client);
 
 const http = require("http");
 const server = http.createServer(app);
