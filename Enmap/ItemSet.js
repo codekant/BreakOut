@@ -19,6 +19,13 @@ module.exports = (Enmap, client) => {
     autoFetch: true,
     ensureProps: true
   });
+
+  client.locations = new Enmap({
+    name: "locations",
+    fetchAll: false,
+    autoFetch: true,
+    ensureProps: true
+  });
   
   let guns = require('../Items/guns');
   guns.forEach(gun => {
@@ -34,4 +41,9 @@ module.exports = (Enmap, client) => {
   vehicles.forEach(vehicle => {
     client.vehicles.set(vehicle.id, vehicle);
   });
+
+  let locations = require("../Coordination/Mapping.js");
+  locations.forEach(location => {
+    client.locations.set(location.id, location);
+  })
 };

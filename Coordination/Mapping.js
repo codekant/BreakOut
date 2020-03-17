@@ -58,7 +58,7 @@ module.exports = [
     name: "Bank",
     id: "bank",
     description:
-      "Mystery to go inside, you need a keycard which you get from pitpocketing a police to go inside a bank, rob it and get 1500",
+      "Mystery to go inside, you need a keycard which you get from pitpocketing a police to go inside a bank, rob it and get 1500$ - 3500$",
     distance: 1200,
     cd: {
       x: 360,
