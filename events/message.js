@@ -12,22 +12,16 @@ module.exports = async (client, message) => {
     .split(" ");
   let command = args.shift().toLowerCase();
   if (client.commands.has(command)) {
-    if (client.commands.get(command).help.category == "crime" && client.db.get(message.author.id, "role") !== null) {
-      let ch1 = client.db.get(message.author.id, "role");
-      if (ch1 !== "criminal") return;
-    } else if (client.commands.get(command).help.category == "police" && client.db.get(message.author.id, "role") !== null) {
-      let ch1 = client.db.get(message.author.id, "role");
-      if (ch1 !== "police") return;
-    }
-    client.commands.get(command).run(client, message, args);
+    let ch = client.bo.getRole(message.author.id);
+    let cmd = client.commands.get(command);
+    if(cmd.help.category === "crime" && ch !== "criminal") return;
+    if(cmd.help.category === "police" && ch !== "police") return;
+    cmd.run(client, message, args);
   } else if (client.aliases.has(command)) {
-    if (client.aliases.get(command).help.category == "crime" && client.db.get(message.author.id, "role") !== null) {
-      let ch1 = client.db.get(message.author.id, "role");
-      if (ch1 !== "criminal") return;
-    } else if (client.aliases.get(command).help.category == "police") {
-      let ch1 = client.db.get(message.author.id, "role" && client.db.get(message.author.id, "role") !== null);
-      if (ch1 !== "police") return;
-    }
-    client.aliases.get(command).run(client, message, args);
+    let cmd = client.aliases.get(command);
+    let ch = client.bo.getRole(message.author.id);
+    if(cmd.help.category === "crime" && ch !== "criminal") return;
+    if(cmd.help.category === "police" && ch !== "police") return;
+    cmd.run(client, message, args);
   } else return;
 };
