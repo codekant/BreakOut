@@ -22,6 +22,50 @@ module.exports.run = async (client, message, args) => {
   
   let pocket = client.bo.pitpocket(message.author.id, user.id);
   
-  
-  
+  if(pocket == "pistol") {
+    client.bo.addGunInventory(message.author.id, client.guns.get('pistol'));
+    message.channel.send({
+      embed: new Discord.RichEmbed()
+      .setDescription("You pitpocketed that user and took their pistol")
+      .setTimestamp()
+      .setColor(client.color)
+    })
+  } else
+  if(pocket == "shotgun") {
+    client.bo.addGunInventory(message.author.id, client.guns.get("shotgun"));
+    message.channel.send({
+      embed: new Discord.RichEmbed()
+      .setDescription("You pitpocketed that user and took their shotgun")
+      .setTimestamp()
+      .setColor(client.color)
+    })
+  } else 
+  if(pocket == "doughnut") {
+    client.bo.addRestInventory(message.author.id, client.other.get("doughnut"));
+    message.channel.send({
+      embed: new Discord.RichEmbed()
+      .setDescription("You pitpocketed that user and took their doughnut")
+      .setTimestamp()
+      .setColor(client.color)
+    });
+  } else 
+  if(pocket == "keycard") {
+    client.bo.addRestInventory(message.author.id, client.other.get("keycard"));
+    message.channel.send({
+      embed: new Discord.RichEmbed()
+      .setDescription("You pitpocketed that user and took their keycard, now you can rob banks.")
+      .setTimestamp()
+      .setColor(client.color)
+    })
+  } else 
+  if(pocket == "torch") {
+      client.bo.addRestInventory(message.author.id, client.other.get("torch"));
+      message.channel.send({
+        embed: new Discord.RichEmbed()
+        .setDescription("You pitpocketed that user and took their torch")
+        .setTimestamp()
+        .setColor(client.color)
+      })
+  }
+
 };

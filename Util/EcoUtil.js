@@ -84,7 +84,7 @@ class Eco {
     this.client.db.set(userId, role, 'role')
   }
 
-  pitPocket(userId, police) {
+  pitpocket(userId, police) {
     let items = [
       "pistol",
       "shotgun",
@@ -114,7 +114,8 @@ class Eco {
         eco: {
           money: 0,
           bounty: 0,
-          nitro: 50
+          nitro: 50,
+          energy: 10
         },
         role: null,
         location: null
@@ -125,10 +126,22 @@ class Eco {
     vehicles.forEach(vehicle => {
       obj.vehicles[vehicle.id] = vehicle;
     });
-    if(opt) {
+    if(opt == true) {
       obj.equiped.guns["pistol"] = this.client.guns.get("pistol");
+      obj.location = "prison";
+      obj.role = "police";
+    } else if(opt == false) {
+      obj.robbed = {};
+      obj.location = "prison";
+      obj.role = "robber";
     }
     return obj;
+  }
+
+  getLocation(userId) {
+    let ch = this.client.db.get(userId, "location");
+    ch = this.client.locations.get(ch);
+    return ch;
   }
 }
 

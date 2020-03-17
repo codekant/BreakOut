@@ -11,5 +11,11 @@ module.exports = [
     id: "keycard",
     emoji: "",
     cost: 0
+  },
+  {
+    name: 'Torch',
+    id: "torch",
+    emoji: "",
+    cost: 0
   }
 ]
