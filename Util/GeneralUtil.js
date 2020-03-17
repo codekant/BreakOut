@@ -6,10 +6,10 @@ class Util {
     }
 
     findUser(message) {
-        let args = message.content.slice(this.client.config.bot.prefix.length).trim().split(" ").shift();
+        let args = message.content.slice(this.client.config.bot.prefix.length).trim().split(" ").slice(1);
         let user = (message.mentions.users.first() || 
         this.client.users.resolve(args[0]) ||
-        message.member.guild.users.cache.find(user => user.username.toLowerCase().includes(args.join(" "))));
+        message.guild.members.cache.find(user => user.user.username.toLowerCase().includes(args.join(" ") || "x192x982x981289") && !user.user.bot));
         return user;
     }
 
