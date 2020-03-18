@@ -12,7 +12,7 @@ module.exports = [
   },
   {
     name: "Apartment",
-    id: "appartment",
+    id: "apartment",
     description:
       "Stay here for the rest of your BreakOut day, take rest and stay safe. You will be given a flat for cost. Protects you from your opponent and doesn't allow them to kill you.",
     distance: 2300,
@@ -159,6 +159,56 @@ module.exports = [
     cd: {
       x: 1073,
       y: 718
+    }
+  },
+  {
+    name: "2nd Apartment",
+    id: "apartment2",
+    description: "Just another apartment",
+    distance: 1800,
+    cd: {
+      x: 318, 
+      y: 522
+    }
+  },
+  {
+    name: "Hospital",
+    id: "hospital",
+    description: "Hospital, ofcourse there are ppl admitted here. No harming them, but loot all the drugs kept here and take to volcano base to deposit and claim the money for it!",
+    distance: 1222,
+    cd: {
+      x: 3123,
+      y: 1230
+    }
+  },
+  {
+    name: "SuperMarket",
+    id: "market",
+    description: "SuperMarket, not to buy, but rob.. go rob as many items as possible... go to any crime base to deposit the loot.",
+    distance: 2398,
+    cd: {
+      x: 98372,
+      y: 23492
+    }
+  },
+  {
+    name: "Gas Station",
+    id: "gasstation",
+    description: "Go loot the money the gas stationer had collected",
+    distance: 1239,
+    cd: {
+      x: 2093,
+      y: 2309
+    }
+  },
+  {
+    name: "Office",
+    id: "office",
+    description: "Go steal all the important files of the office, and take it to the volcano base to the collector to deposit and claim cash",
+    distance: 239,
+    cd: {
+      x: 2398,
+      y: 23098
     }
   }
 ];

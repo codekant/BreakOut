@@ -16,12 +16,16 @@ module.exports = async (client, message) => {
     let cmd = client.commands.get(command);
     if(cmd.help.category === "crime" && ch !== "criminal") return;
     if(cmd.help.category === "police" && ch !== "police") return;
-    cmd.run(client, message, args);
+    let lol = ['police', 'crime', 'game'];
+    if(lol.includes(cmd.help.category) && client.bo.getRole(message.author.id) == null && cmd.help.name !== "start") return client.Util.sendError("You can't use these commands unless you start your journey on BreakOut! try out `bo start`", message.channel);
+    cmd.run(client, message, args).catch(e => client.Util.sendError("Sorry you can't do that rn.", message.channel));
   } else if (client.aliases.has(command)) {
     let cmd = client.aliases.get(command);
     let ch = client.bo.getRole(message.author.id);
     if(cmd.help.category === "crime" && ch !== "criminal") return;
     if(cmd.help.category === "police" && ch !== "police") return;
-    cmd.run(client, message, args);
+    let lol = ['police', 'crime', 'game'];
+    if(lol.includes(cmd.help.category) && client.bo.getRole(message.author.id) == null && cmd.help.name !== "start") return client.Util.sendError("You can't use these commands unless you start your journey on BreakOut! try out `bo start`", message.channel);
+      cmd.run(client, message, args)//.catch(e => client.Util.sendError("Sorry you can't do that rn.", message.channel));
   } else return;
 };

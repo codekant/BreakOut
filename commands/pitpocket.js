@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
       message.channel
     );
 
-  let ch1 = client.db.get(user.id, "role");
+  let ch1 = client.bo.getRole(user.id)
   if (ch1 !== "police")
     return client.Util.sendError("That user is not a police.", message.channel);
   
