@@ -47,6 +47,10 @@ class Eco {
     this.removeMoney(userId, gun.cost);
   }
   
+  getInventory(userId) {
+    return this.client.db.get(userId, "equiped")
+  }
+  
   addRestInventory(userId, item) {
     if(typeof item !== "object") throw new SyntaxError("Item needs to be an object");
     this.client.db.set(userId, {
@@ -75,8 +79,7 @@ class Eco {
   }
 
   setLocation(userId, location) {
-    if(typeof location !== "string") throw new SyntaxError("Location should be typeof string");
-    this.client.db.set(userId, location, `location`);
+     this.client.db.set(userId, location, "location")
   }
 
   switchTeam(userId, role) {
@@ -97,7 +100,8 @@ class Eco {
   }
   
   getRole(userId) {
-    let role = this.client.db.get(userId, "role")
+    let role = this.client.db.get(userId, "role");
+    return role;
   }
   
   getItems(opt) {
@@ -107,7 +111,7 @@ class Eco {
       vehicles: {},
         guns: {},
         equiped: {
-          vehicle: {},
+          vehicle: null,
           guns: {},
           rest: {}
         },
@@ -133,7 +137,7 @@ class Eco {
     } else if(opt == false) {
       obj.robbed = {};
       obj.location = "prison";
-      obj.role = "robber";
+      obj.role = "criminal";
     }
     return obj;
   }
@@ -142,6 +146,18 @@ class Eco {
     let ch = this.client.db.get(userId, "location");
     ch = this.client.locations.get(ch);
     return ch;
+  }
+  
+  setRole(userId, role) {
+    this.client.db.set(userId, role, "role")
+  }
+  
+  deleteInventory(userId) {
+    this.client.db.set(userId, this.getItems().equiped);
+  }
+  
+  getVehicle(userId) {
+    return this.client.db.get(userId, "equiped.vehicle");
   }
 }
 
